@@ -1,0 +1,14 @@
+import collections
+def solution(clothes):
+    answer = 1
+    dict = collections.defaultdict(list)
+    
+    for cloth in clothes:
+        key = cloth[1]
+        value = cloth[0]
+        dict[key].append(value)
+    
+    for key in dict.keys():
+        answer*=len(dict[key])+1 # x*y*z + x*y + y*z + x*z +1 -1
+        
+    return answer-1
