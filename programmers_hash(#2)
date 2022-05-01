@@ -1,0 +1,38 @@
+#나의 풀이
+import collections
+def solution(phone_book):
+    answer = True
+
+    freqs=collections.defaultdict(int)
+    
+    def bfs(freq,idx):
+        for numbers in idx:
+            for number in numbers:
+                freqs[number]-=1
+            print(freq)
+            if sorted(freq.items(), key =lambda x:x[1])[0][1]>0:
+                return False
+            else:
+                continue
+        
+    for i,numbers in enumerate(phone_book):
+        for number in numbers:
+            freqs[number]+=1
+        bfs(freqs,phone_book[i+1:])
+        
+        
+    return answer
+    
+#다른사람의 풀이
+def solution(phone_book):
+    hash_table={}
+    for phone_number in phone_book:
+        hash_table[phone_number]=1
+        #print(hash_table)
+    for phone_number in phone_book:
+        temp=""
+        for number in phone_number:
+            temp+=number
+            if temp in hash_table and temp!=phone_number:
+                return False
+    return True
